@@ -119,7 +119,8 @@
             'adapter/editorui.js',
             'adapter/editor.js',
             'adapter/message.js',
-            'adapter/autosave.js'
+            'adapter/autosave.js',
+            'adapter/usertips.js'
 
         ],
         baseURL = '../_src/';

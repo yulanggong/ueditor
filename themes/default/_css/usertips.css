@@ -1,0 +1,33 @@
+.usertips {
+  border: 1px solid #ccc;
+  background: #fff;
+  position: absolute;
+  top: 180px;
+  left: 300px;
+  font-size: 12px;
+  line-height: 24px;
+  z-index: 1000;
+  box-shadow: 0 0 3px rgba(0,0,0,.2)
+}
+.usertips input {
+  border: 0 none;
+  background: #fff;
+  padding: 0 10px;
+  outline: 0 none;
+}
+.usertips .ut-info {
+  padding: 0 10px;
+  background: #ddd;
+}
+.usertips .ut-lists {
+  margin: 0;
+  padding: 0;
+}
+.usertips .ut-lists .ut-user {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.usertips .ut-lists .active {
+  background: #eee;
+}
