@@ -32,10 +32,19 @@
         // 服务器统一请求接口路径
         , serverUrl: URL + "php/controller.php"
 
+        //上传图片时的附带数据
+        //, imageFormData: {}
+
+        //用 @ 提及他人接口路径
+        //, userTipsUrl: './server/usertips.php'
+
+        //在有草稿的情况下自动使用草稿
+        , useDraft: true
+
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
         , toolbars: [['source', '|', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|', 'fontfamily', 'fontsize', '|', 'link', 'insertimage', 'emotion', 'insertvideo', 'map', 'usertips']]
 
-/*        , toolbars: [[
+        /*, toolbars: [[
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
             'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
@@ -62,7 +71,7 @@
         //,theme:'default'
         //,themePath:URL +"themes/"
 
-        ,zIndex : 80     //编辑器层级的基数,默认是900
+        ,zIndex : 100     //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
         //,charset:"utf-8"
@@ -304,7 +313,7 @@
         //,toolbarTopOffset:400
 
         //设置远程图片是否抓取到本地保存
-        //,catchRemoteImageEnable: true //设置是否抓取远程图片
+        ,catchRemoteImageEnable: false //设置是否抓取远程图片
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_
@@ -339,7 +348,7 @@
         //sourceEditor
         //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
         //注意默认codemirror只能在ie8+和非ie中使用
-        //,sourceEditor:"codemirror"
+        ,sourceEditor:"textarea"
         //如果sourceEditor是codemirror，还用配置一下两个参数
         //codeMirrorJsUrl js加载的路径，默认是 URL + "third-party/codemirror/codemirror.js"
         //,codeMirrorJsUrl:URL + "third-party/codemirror/codemirror.js"
