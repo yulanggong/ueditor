@@ -4,7 +4,14 @@
 UE.userTips = function(editor, options) {
     var userTips = UE.userTips;
 
-    userTips.temple = '' + '<div class="usertips">' + '<input type="text">' + '<div class="ut-info">想用 @ 提及谁？</div>' + '<ul class="ut-lists">' + '<li class="ut-user">用户1</li>' + '</ul>' + '</div>'
+    userTips.template = ''
+    + '<div class="usertips">'
+        + '<input type="text">'
+        + '<div class="ut-info">想用 @ 提及谁？</div>'
+        + '<ul class="ut-lists">'
+            + '<li class="ut-user">用户1</li>'
+        + '</ul>'
+    + '</div>'
 
     //数据缓存
     userTips.history = {}
@@ -13,8 +20,8 @@ UE.userTips = function(editor, options) {
         return $.Deferred(function(dfd) {
             var history = userTips.history
 
-            if (history[word]) {
-                dfd.resolve(history[word])
+            if (history[word||'_none']) {
+                dfd.resolve(history[word||'_none'])
             } else {
                 $.ajax({
                     url: editor.getOpt('userTipsUrl') || './server/usertips.php',
@@ -24,8 +31,8 @@ UE.userTips = function(editor, options) {
                     dataType: 'json',
                     type: "post"
                 }).done(function(data) {
-                    history[word] = data
-                    dfd.resolve(history[word])
+                    history[word||'_none'] = data
+                    dfd.resolve(history[word||'_none'])
                 }).fail(function(xhr, textStatus, errorThrown) {
                     dfd.reject('Network error', xhr, textStatus, errorThrown)
                 })
@@ -34,7 +41,11 @@ UE.userTips = function(editor, options) {
     }
 
     userTips.show = function() {
-        userTips.tips = userTips.tips || $(userTips.temple)
+        userTips.tips = userTips.tips || $(userTips.template);
+
+        userTips.tips.css({
+            zIndex: editor.getOpt('zIndex')
+        });
 
         userTips.tips.appendTo('body').css(getCursorPosition())
             .on('click', function(e) {
