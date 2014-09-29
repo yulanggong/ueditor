@@ -32,8 +32,19 @@
         // 服务器统一请求接口路径
         , serverUrl: URL + "php/controller.php"
 
+        //上传图片时的附带数据
+        //, imageFormData: {}
+
+        //用 @ 提及他人接口路径
+        //, userTipsUrl: './server/usertips.php'
+
+        //在有草稿的情况下自动使用草稿
+        , useDraft: true
+
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的重新定义
-        , toolbars: [[
+        , toolbars: [['source', '|', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 'formatmatch', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|', 'fontfamily', 'fontsize', '|', 'link', 'insertimage', 'emotion', 'insertvideo', 'map', 'usertips']]
+
+        /*, toolbars: [[
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
             'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
@@ -45,12 +56,11 @@
             'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
             'print', 'preview', 'searchreplace', 'drafts', 'help'
-        ]]
+        ]]*/
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
-        //,labelMap:{
-        //    'anchor':'', 'undo':''
-        //}
-
+/*        ,labelMap:{
+            'usertips': '用 @ 提及他人'
+        }*/
         //语言配置项,默认是zh-cn。有需要的话也可以使用如下这样的方式来自动多语言切换，当然，前提条件是lang文件夹下存在对应的语言文件：
         //lang值也可以通过自动获取 (navigator.language||navigator.browserLanguage ||navigator.userLanguage).toLowerCase()
         //,lang:"zh-cn"
@@ -61,7 +71,7 @@
         //,theme:'default'
         //,themePath:URL +"themes/"
 
-        //,zIndex : 900     //编辑器层级的基数,默认是900
+        ,zIndex : 100     //编辑器层级的基数,默认是900
 
         //针对getAllHtml方法，会在对应的head标签中增加该编码设置。
         //,charset:"utf-8"
@@ -90,8 +100,8 @@
         //首行缩进距离,默认是2em
         //,indentValue:'2em'
 
-        //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        //,initialFrameHeight:320  //初始化编辑器高度,默认320
+        ,initialFrameWidth:670  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:320  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
@@ -256,10 +266,10 @@
 
         //elementPathEnabled
         //是否启用元素路径，默认是显示
-        //,elementPathEnabled : true
+        ,elementPathEnabled : false
 
         //wordCount
-        //,wordCount:true          //是否开启字数统计
+        ,wordCount:false          //是否开启字数统计
         //,maximumWords:10000       //允许的最大字符数
         //字数统计提示，{#count}代表当前字数，{#leave}代表还可以输入多少字符数,留空支持多语言自动切换，否则按此配置显示
         //,wordCountMsg:''   //当前已输入 {#count} 个字符，您还可以输入{#leave} 个字符
@@ -298,12 +308,12 @@
         //是否保持toolbar的位置不动,默认true
         //,autoFloatEnabled:true
         //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
-        //,topOffset:30
+        ,topOffset:50
         //编辑器底部距离工具栏高度(如果参数大于等于编辑器高度，则设置无效)
         //,toolbarTopOffset:400
 
         //设置远程图片是否抓取到本地保存
-        //,catchRemoteImageEnable: true //设置是否抓取远程图片
+        ,catchRemoteImageEnable: false //设置是否抓取远程图片
 
         //pageBreakTag
         //分页标识符,默认是_ueditor_page_break_tag_
@@ -338,7 +348,7 @@
         //sourceEditor
         //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
         //注意默认codemirror只能在ie8+和非ie中使用
-        //,sourceEditor:"codemirror"
+        ,sourceEditor:"textarea"
         //如果sourceEditor是codemirror，还用配置一下两个参数
         //codeMirrorJsUrl js加载的路径，默认是 URL + "third-party/codemirror/codemirror.js"
         //,codeMirrorJsUrl:URL + "third-party/codemirror/codemirror.js"

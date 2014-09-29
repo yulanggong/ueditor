@@ -370,6 +370,7 @@
                 },
                 swf: '../../third-party/webuploader/Uploader.swf',
                 server: actionUrl,
+                formData: editor.getOpt('imageFormData') || {},
                 fileVal: editor.getOpt('imageFieldName'),
                 duplicate: true,
                 fileSingleSizeLimit: imageMaxSize,    // 默认 2 M

@@ -4,6 +4,7 @@ window.onload = function () {
     });
 
     emotion.SmileyPath = editor.options.emotionLocalization === true ? 'images/' : "http://img.baidu.com/hi/";
+    emotion.imagePath = editor.options.emotionImagePath || 'http://www.zuzhili.com/js/ZZLPlugin/emotions/img/';
     emotion.SmileyBox = createTabList( emotion.tabNum );
     emotion.tabExist = createArr( emotion.tabNum );
 
@@ -44,11 +45,13 @@ function initEvtHandler( conId ) {
     $G( "tabIconReview" ).style.display = 'none';
 }
 
-function InsertSmiley( url, evt ) {
+function InsertSmiley( url, title, evt ) {
     var obj = {
-        src:editor.options.emotionLocalization ? editor.options.UEDITOR_HOME_URL + "dialogs/emotion/" + url : url
+        src:editor.options.emotionLocalization ? editor.options.UEDITOR_HOME_URL + "dialogs/emotion/" + url : url,
+        alt: 'emotion',
+        title: title
     };
-    obj._src = obj.src;
+    obj.data_ue_src = obj.src;
     editor.execCommand( 'insertimage', obj );
     if ( !evt.ctrlKey ) {
         dialog.popup.hide();
@@ -81,35 +84,10 @@ function autoHeight( index ) {
             parent = iframe.parentNode.parentNode;
     switch ( index ) {
         case 0:
-            iframe.style.height = "380px";
-            parent.style.height = "392px";
-            break;
-        case 1:
-            iframe.style.height = "220px";
-            parent.style.height = "232px";
-            break;
-        case 2:
-            iframe.style.height = "260px";
-            parent.style.height = "272px";
-            break;
-        case 3:
-            iframe.style.height = "300px";
-            parent.style.height = "312px";
-            break;
-        case 4:
-            iframe.style.height = "140px";
-            parent.style.height = "152px";
-            break;
-        case 5:
-            iframe.style.height = "260px";
-            parent.style.height = "272px";
-            break;
-        case 6:
-            iframe.style.height = "230px";
-            parent.style.height = "242px";
+            iframe.style.height = "284px";
+            parent.style.height = "284px";
             break;
         default:
-
     }
 }
 
@@ -119,12 +97,12 @@ function createTab( tabName ) {
             tab = $G( tabName ), //获取将要生成的Div句柄
             imagePath = emotion.SmileyPath + emotion.imageFolders[tabName], //获取显示表情和预览表情的路径
             positionLine = 11 / 2, //中间数
-            iWidth = iHeight = 35, //图片长宽
+            iWidth = iHeight = 22, //图片长宽
             iColWidth = 3, //表格剩余空间的显示比例
             tableCss = emotion.imageCss[tabName],
             cssOffset = emotion.imageCssOffset[tabName],
             textHTML = ['<table class="smileytable">'],
-            i = 0, imgNum = emotion.SmileyBox[tabName].length, imgColNum = 11, faceImage,
+            i = 0, imgNum = emotion.SmileyBox[tabName].length, imgColNum = 12, faceImage,
             sUrl, realUrl, posflag, offset, infor;
 
     for ( ; i < imgNum; ) {
@@ -137,10 +115,11 @@ function createTab( tabName ) {
                 posflag = j < positionLine ? 0 : 1;
                 offset = cssOffset * i * (-1) - 1;
                 infor = emotion.SmileyInfor[tabName][i];
+                src = emotion.imagePath + emotion.imageUrl[tabName][i];
 
-                textHTML.push( '<td  class="' + tableCss + '"   border="1" width="' + iColWidth + '%" style="border-collapse:collapse;" align="center"  bgcolor="transparent" onclick="InsertSmiley(\'' + realUrl.replace( /'/g, "\\'" ) + '\',event)" onmouseover="over(this,\'' + sUrl + '\',\'' + posflag + '\')" onmouseout="out(this)">' );
+                textHTML.push( '<td  class="' + tableCss + '"   border="1" width="' + iColWidth + '%" style="border-collapse:collapse;" align="center"  onclick="InsertSmiley(\'' + src.replace( /'/g, "\\'" ) + '\',\'['+ infor +']\',event)">' );
                 textHTML.push( '<span>' );
-                textHTML.push( '<img  style="background-position:left ' + offset + 'px;" title="' + infor + '" src="' + emotion.SmileyPath + (editor.options.emotionLocalization ? '0.gif" width="' : 'default/0.gif" width="') + iWidth + '" height="' + iHeight + '"></img>' );
+                textHTML.push( '<img title="' + infor + '" src="'+ src +'" width="' + iWidth + '" height="' + iHeight + '"></img>' );
                 textHTML.push( '</span>' );
             } else {
                 textHTML.push( '<td width="' + iColWidth + '%"   bgcolor="#FFFFFF">' );

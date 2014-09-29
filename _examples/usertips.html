@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+	<meta charset="UTF-8">
+	<title>@User</title>
+	<script>
+	if(0){
+		document.write('<script type="text/javascript" charset="utf-8" src="../ueditor.config.js"><\/script>'
+			+ '<script type="text/javascript" charset="utf-8" src="editor_api.js"><\/script>')
+	} else {
+		document.write('<script type="text/javascript" charset="utf-8" src="../dist/utf8-jsp/ueditor.config.js"><\/script>'
+			+'<script type="text/javascript" charset="utf-8" src="../dist/utf8-jsp/ueditor.all.min.js"><\/script>')
+	}
+	</script>
+</head>
+<body>
+<textarea name="ueditor" id="ueditor" cols="30" rows="10"></textarea>
+<button onclick="clearlocaldata()">清理草稿</button>
+<script data-main="main.js" src="require.js"></script>
+</body>
+</html>
