@@ -1,5 +1,5 @@
 Get Started
-=====
+======
 
 ## ueditor富文本编辑器介绍
 
