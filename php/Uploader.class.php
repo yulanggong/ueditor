@@ -46,7 +46,7 @@ class Uploader
      * 构造函数
      * @param string $fileField 表单名称
      * @param array $config 配置项
-     * @param bool $base64 是否解析base64编码，可省略。若开启，则$fileField代表的是base64编码的字符串表单名
+	 * @param string $type	处理文件上传的方式
      */
     public function __construct($fileField, $config, $type = "upload")
     {
@@ -273,7 +273,7 @@ class Uploader
         $format = str_replace("{ss}", $d[6], $format);
         $format = str_replace("{time}", $t, $format);
 
-        //过滤文件名的非法自负,并替换文件名
+        //过滤文件名的非法字符,并替换文件名
         $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
         $oriName = preg_replace("/[\|\?\"\<\>\/\*\\\\]+/", '', $oriName);
         $format = str_replace("{filename}", $oriName, $format);
